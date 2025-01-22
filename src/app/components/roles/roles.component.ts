@@ -1,21 +1,33 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, inject, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { APIResponse, IRole } from '../../model/interface/role';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-roles',
   standalone: true,
-  imports: [],
+  imports: [FormsModule, CommonModule],
   templateUrl: './roles.component.html',
   styleUrl: './roles.component.css'
 })
-export class RolesComponent {
-  firstName: string = "Angular Tutorial"
-  angularVersion = "v18"
+export class RolesComponent implements OnInit {
+  getAllRolesApi: string = "https://freeapi.miniprojectideas.com/api/ClientStrive/GetAllRoles"
 
-  version: number = 18
+  isLoading: boolean = true
+  roleList: IRole [] = []
+  http = inject(HttpClient)
 
-  isActive: boolean = false
-
-  currentDate: Date = new Date()
-
-  inputType: string = "radio"
+  ngOnInit(): void {
+    this.getAllRoles()
+  }
+  
+  getAllRoles(){
+    this.http.get<APIResponse>(this.getAllRolesApi)
+    .subscribe((res: APIResponse) => {
+      this.roleList = res.data
+      this.isLoading = false
+      console.log(this.roleList)
+    })
+  }
 }

@@ -1,0 +1,96 @@
+<div class="row">
+    <div class="col-8">
+        <div class="card">
+            <div class="card-header bg-success">
+                Client List
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Sr No</th>
+                                    <th>Company Name</th>
+                                    <th>Person Name</th>
+                                    <th>Contact Number</th>
+                                    <th>City</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (item of clientList; track $index) {
+                                <tr>
+                                    <td>{{$index+1}}</td>
+                                    <td>{{item.companyName}}</td>
+                                    <td>{{item.contactPersonName}}</td>
+                                    <td>{{item.contactNo}}</td>
+                                    <td>{{item.city}}</td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header bg-success">
+                New Client
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <label>Person Name</label>
+                        <input type="text" [(ngModel)]="clientObj.contactPersonName" class="form-control">
+                    </div>
+                    <div class="col-6">
+                        <label>Company Name</label>
+                        <input type="text" [(ngModel)]="clientObj.companyName" class="form-control">
+                    </div>
+                    <div class="col-6">
+                        <label>Contact Number</label>
+                        <input type="text" [(ngModel)]="clientObj.contactNo" class="form-control">
+                    </div>
+                    <div class="col-6">
+                        <label>City</label>
+                        <input type="text" [(ngModel)]="clientObj.city" class="form-control">
+                    </div>
+                    <div class="col-6">
+                        <label>State</label>
+                        <input type="text" [(ngModel)]="clientObj.state" class="form-control">
+                    </div>
+                    <div class="col-6">
+                        <label>Pincode</label>
+                        <input type="text" [(ngModel)]="clientObj.pincode" class="form-control">
+                    </div>
+                    <div class="col-6">
+                        <label>Address</label>
+                        <textarea class="form-control" [(ngModel)]="clientObj.address"></textarea>
+                    </div>
+                    <div class="col-6">
+                        <label>Employee Strength</label>
+                        <input type="text" [(ngModel)]="clientObj.employeeStrength" class="form-control">
+                    </div>
+                    <div class="col-6">
+                        <label>GST No</label>
+                        <input type="text" [(ngModel)]="clientObj.gstNo" class="form-control">
+                    </div>
+                    <div class="col-6">
+                        <label>Reg No</label>
+                        <input type="text" [(ngModel)]="clientObj.regNo" class="form-control">
+                    </div>
+                </div>
+                <div class="row pt-2">
+                    <div class="col-6 text-center">
+                        <button class="btn btn-secondary">Save Client</button>
+                    </div>
+                    <div class="col-6 text-center">
+                        <button class="btn btn-success" (click)="onSaveClient()">Save Client</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
