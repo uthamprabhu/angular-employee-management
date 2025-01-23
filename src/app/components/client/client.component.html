@@ -15,6 +15,7 @@
                                     <th>Person Name</th>
                                     <th>Contact Number</th>
                                     <th>City</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -25,6 +26,10 @@
                                     <td>{{item.contactPersonName}}</td>
                                     <td>{{item.contactNo}}</td>
                                     <td>{{item.city}}</td>
+                                    <td>
+                                        <button class="btn btn-primary" (click)="onEdit(item)">Edit</button>&nbsp;
+                                        <button class="btn btn-danger" (click)="onDelete(item.clientId)">Delete</button>
+                                    </td>
                                 </tr>
                                 }
                             </tbody>
@@ -87,7 +92,9 @@
                         <button class="btn btn-secondary">Save Client</button>
                     </div>
                     <div class="col-6 text-center">
-                        <button class="btn btn-success" (click)="onSaveClient()">Save Client</button>
+                        <button class="btn btn-success" (click)="onSaveClient()">
+                            {{clientObj.clientId != 0 ? 'Update Client' : 'Save Client'}}
+                        </button>
                     </div>
                 </div>
             </div>
