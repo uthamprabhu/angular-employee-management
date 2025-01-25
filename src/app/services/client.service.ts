@@ -12,15 +12,23 @@ export class ClientService {
 
   constructor(private http: HttpClient) { }
 
-  getAllClients(): Observable<APIResponse>{
-    return this.http.get<APIResponse>(environment.API_URL+"GetAllClients")
+  getAllClients(): Observable<APIResponse> {
+    return this.http.get<APIResponse>(environment.API_URL + "GetAllClients")
   }
 
-  addUpdate(obj: Client): Observable<APIResponse>{
-    return this.http.post<APIResponse>(environment.API_URL+"AddUpdateClient",obj)
+  getAllEmployee(): Observable<APIResponse> {
+    return this.http.get<APIResponse>(environment.API_URL + 'GetAllEmployee')
   }
 
-  deleteClientById(id: number): Observable<APIResponse>{
-    return this.http.delete<APIResponse>(environment.API_URL+"DeleteClientByClientId?clientId="+id)
+  addUpdate(obj: Client): Observable<APIResponse> {
+    return this.http.post<APIResponse>(environment.API_URL + "AddUpdateClient", obj)
+  }
+
+  deleteClientById(id: number): Observable<APIResponse> {
+    return this.http.delete<APIResponse>(environment.API_URL + "DeleteClientByClientId?clientId=" + id)
+  }
+
+  addUpdateClientProject(obj: Client): Observable<APIResponse> {
+    return this.http.post<APIResponse>(environment.API_URL + "AddUpdateClientProject", obj)
   }
 }
