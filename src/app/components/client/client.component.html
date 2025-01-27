@@ -1,8 +1,15 @@
+<p>{{clientObj | json}}</p>
+<ul>
+    @for (item of userList$ | async; track $index) {
+    <li>{{item.username}}</li>
+    }
+</ul>
+<app-alert [alertType]="'Success'" [msg]="'Api call succesful'"></app-alert>
 <div class="row">
     <div class="col-8">
         <div class="card">
             <div class="card-header bg-success">
-                Client List
+                Client List - {{currentDate | date:'dd/mm/yyyy'}}
             </div>
             <div class="card-body">
                 <div class="row">
@@ -22,7 +29,7 @@
                                 @for (item of clientList; track $index) {
                                 <tr>
                                     <td>{{$index+1}}</td>
-                                    <td>{{item.companyName}}</td>
+                                    <td>{{item.companyName | uppercase}}</td>
                                     <td>{{item.contactPersonName}}</td>
                                     <td>{{item.contactNo}}</td>
                                     <td>{{item.city}}</td>
@@ -49,7 +56,7 @@
                     <div class="row">
                         <div class="col-6">
                             <label>Person Name</label>
-                            <input  type="text" #personName="ngModel" required minlength="5"
+                            <input type="text" #personName="ngModel" required minlength="5"
                                 [(ngModel)]="clientObj.contactPersonName" class="form-control" name="contactPersonName">
                             @if (personName.touched) {
                             <div class="text-danger">
@@ -64,7 +71,8 @@
                         </div>
                         <div class="col-6">
                             <label>Company Name</label>
-                            <input type="text" [(ngModel)]="clientObj.companyName" class="form-control" name="companyName">
+                            <input type="text" [(ngModel)]="clientObj.companyName" class="form-control"
+                                name="companyName">
                         </div>
                         <div class="col-6">
                             <label>Contact Number</label>
@@ -88,7 +96,8 @@
                         </div>
                         <div class="col-6">
                             <label>Employee Strength</label>
-                            <input type="text" [(ngModel)]="clientObj.employeeStrength" class="form-control" name="employeeStrength">
+                            <input type="text" [(ngModel)]="clientObj.employeeStrength" class="form-control"
+                                name="employeeStrength">
                         </div>
                         <div class="col-6">
                             <label>GST No</label>
@@ -104,9 +113,11 @@
                             <button class="btn btn-secondary">Reset</button>
                         </div>
                         <div class="col-6 text-center">
-                            <button class="btn btn-success" [disabled]="!form.valid" (click)="onSaveClient()">
-                                {{clientObj.clientId != 0 ? 'Update Client' : 'Save Client'}}
-                            </button>
+                            <app-my-button (onBtnClick)="onSaveClient()" [btnClass]="'btn btn-success'"
+                                [btnText]="clientObj.clientId != 0 ? 'Update Client' : 'Save Client'"></app-my-button>
+                            <!-- <button class="btn btn-success" [disabled]="!form.valid" (click)="onSaveClient()">
+                                {{}}
+                            </button> -->
                         </div>
                     </div>
                 </form>
